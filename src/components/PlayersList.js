@@ -103,22 +103,67 @@ const PlayersList = () => {
             <h4>Player</h4>
             <div>
               <label>
-                <strong>Title:</strong>
+                <strong>Name:</strong>
               </label>{" "}
-              {currentPlayer.title}
+              {currentPlayer.name}
             </div>
             <div>
               <label>
-                <strong>Description:</strong>
+                <strong>Email:</strong>
               </label>{" "}
-              {currentPlayer.description}
+              {currentPlayer.email}
             </div>
             <div>
               <label>
-                <strong>Status:</strong>
+                <strong>Mobile:</strong>
               </label>{" "}
-              {currentPlayer.published ? "Published" : "Pending"}
+              {currentPlayer.mobile}
             </div>
+            <div>
+              <label>
+                <strong>Dob:</strong>
+              </label>{" "}
+              {currentPlayer.dob}
+            </div>
+            <div>
+              <label>
+                <strong>Age:</strong>
+              </label>{" "}
+              {currentPlayer.age}
+            </div>
+            <div>
+              <label>
+                <strong>Gender:</strong>
+              </label>{" "}
+              {currentPlayer.gender}
+            </div>
+            
+            <div>
+              <label>
+                <strong>Role:</strong>
+              </label>{" "}
+              {currentPlayer.role}
+            </div>
+            <div>
+              <label>
+                <strong>Batting_style:</strong>
+              </label>{" "}
+              {currentPlayer.batting_style}
+            </div>
+            <div>
+              <label>
+                <strong>Bowling_style:</strong>
+              </label>{" "}
+              {currentPlayer.bowling_style}
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
 
             <Link
               to={"/players/" + currentPlayer.id}

@@ -84,34 +84,120 @@ const Player = (props) => {
           <h4>Player</h4>
           <form>
             <div className="form-group">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="name">Name</label>
               <input
                 type="text"
                 className="form-control"
-                id="title"
-                name="title"
-                value={currentPlayer.title}
+                id="name"
+                name="name"
+                value={currentPlayer.name}
                 onChange={handleInputChange}
               />
             </div>
             <div className="form-group">
-              <label htmlFor="description">Description</label>
-              <input
-                type="text"
-                className="form-control"
-                id="description"
-                name="description"
-                value={currentPlayer.description}
-                onChange={handleInputChange}
-              />
-            </div>
+            <label htmlFor="email">Email</label>
+            <input
+              type="text"
+              className="form-control"
+              id="email"
+              required
+              value={currentPlayer.email}
+              onChange={handleInputChange}
+              name="email"
+            />
+          </div>
 
-            <div className="form-group">
-              <label>
-                <strong>Status:</strong>
-              </label>
-              {currentPlayer.published ? "Published" : "Pending"}
-            </div>
+          <div className="form-group">
+            <label htmlFor="mobile">Mobile</label>
+            <input
+              type="text"
+              className="form-control"
+              id="mobile"
+              required
+              value={currentPlayer.mobile}
+              onChange={handleInputChange}
+              name="mobile"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="gender">Gender</label>
+            <input
+              type="text"
+              className="form-control"
+              id="gender"
+              required
+              value={currentPlayer.gender}
+              onChange={handleInputChange}
+              name="gender"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="age">Age</label>
+            <input
+              type="text"
+              className="form-control"
+              id="age"
+              required
+              value={currentPlayer.age}
+              onChange={handleInputChange}
+              name="age"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="dob">DOB</label>
+            <input
+              type="date"
+              className="form-control"
+              id="dob"
+              required
+              value={currentPlayer.dob}
+              onChange={handleInputChange}
+              name="dob"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="role">Role</label>
+            <input
+              type="text"
+              className="form-control"
+              id="role"
+              required
+              value={currentPlayer.role}
+              onChange={handleInputChange}
+              name="role"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="batting_style">Batting Style</label>
+            <input
+              type="text"
+              className="form-control"
+              id="batting_style"
+              required
+              value={currentPlayer.batting_style}
+              onChange={handleInputChange}
+              name="batting_style"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="bowling_style">Bowling Style</label>
+            <input
+              type="text"
+              className="form-control"
+              id="bowling_style"
+              required
+              value={currentPlayer.bowling_style}
+              onChange={handleInputChange}
+              name="bowling_style"
+            />
+          </div>
+
           </form>
 
           {currentPlayer.published ? (
