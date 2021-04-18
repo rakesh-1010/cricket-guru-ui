@@ -3,7 +3,9 @@ import {
     RETRIEVE_PLAYERS,
     UPDATE_PLAYER,
     DELETE_PLAYER,
-    DELETE_ALL_PLAYERS
+    DELETE_ALL_PLAYERS,
+    RETRIEVE_SKILLS,
+    UPDATE_SKILLS
   } from "./types";
   
   import PlayerDataService from "../services/player.service";
@@ -35,6 +37,19 @@ import {
       console.log(err);
     }
   };
+
+  export const retrieveSkills = () => async (dispatch) => {
+    try {
+      const res = await PlayerDataService.getAllSkills();
+  
+      dispatch({
+        type: RETRIEVE_SKILLS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
   
   export const updatePlayer = (id, data) => async (dispatch) => {
     try {
@@ -43,6 +58,21 @@ import {
       dispatch({
         type: UPDATE_PLAYER,
         payload: data,
+      });
+  
+      return Promise.resolve(res.data);
+    } catch (err) {
+      return Promise.reject(err);
+    }
+  };
+
+  export const addSkillsToPlayer = (data) => async (dispatch) => {
+    try {
+      const res = await PlayerDataService.updateSkills(data);
+  
+      dispatch({
+        type: UPDATE_SKILLS,
+        payload: res.data,
       });
   
       return Promise.resolve(res.data);

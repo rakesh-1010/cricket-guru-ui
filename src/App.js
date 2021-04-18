@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
+import 'antd/dist/antd.css'
 
 import AddPlayer from "./components/AddPlayer";
 import Player from "./components/Player";

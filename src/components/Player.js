@@ -2,13 +2,14 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { updatePlayer, deletePlayer } from "../actions/players";
 import PlayerDataService from "../services/player.service";
+import AddSkills from "./AddSkills";
 
 const Player = (props) => {
   const initialPlayerState = {
     id: null,
-    title: "",
-    description: "",
-    published: false
+    name: "",
+    email: "",
+    skills: []
   };
   const [currentPlayer, setCurrentPlayer] = useState(initialPlayerState);
   const [message, setMessage] = useState("");
@@ -35,26 +36,6 @@ const Player = (props) => {
     setCurrentPlayer({ ...currentPlayer, [name]: value });
   };
 
-  const updateStatus = status => {
-    const data = {
-      id: currentPlayer.id,
-      title: currentPlayer.title,
-      description: currentPlayer.description,
-      published: status
-    };
-
-    dispatch(updatePlayer(currentPlayer.id, data))
-      .then(response => {
-        console.log(response);
-
-        setCurrentPlayer({ ...currentPlayer, published: status });
-        setMessage("The status was updated successfully!");
-      })
-      .catch(e => {
-        console.log(e);
-      });
-  };
-
   const updateContent = () => {
     dispatch(updatePlayer(currentPlayer.id, currentPlayer))
       .then(response => {
@@ -78,9 +59,9 @@ const Player = (props) => {
   };
 
   return (
-    <div>
+    <div className="row">
       {currentPlayer ? (
-        <div className="edit-form">
+        <div className="edit-form col-md-6">
           <h4>Player</h4>
           <form>
             <div className="form-group">
@@ -200,29 +181,13 @@ const Player = (props) => {
 
           </form>
 
-          {currentPlayer.published ? (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updateStatus(false)}
-            >
-              UnPublish
-            </button>
-          ) : (
-            <button
-              className="badge badge-primary mr-2"
-              onClick={() => updateStatus(true)}
-            >
-              Publish
-            </button>
-          )}
-
-          <button className="badge badge-danger mr-2" onClick={removePlayer}>
+          <button className="btn btn-danger mr-2" onClick={removePlayer}>
             Delete
           </button>
 
           <button
             type="submit"
-            className="badge badge-success"
+            className="btn btn-success"
             onClick={updateContent}
           >
             Update
@@ -235,6 +200,9 @@ const Player = (props) => {
           <p>Please click on a Player...</p>
         </div>
       )}
+      <div className="col-md-6">
+        <AddSkills currentPlayer={currentPlayer} currentPlayerSkillIds={currentPlayer.skills.map(skill => skill.id)}/>
+      </div>
     </div>
   );
 };

@@ -28,6 +28,14 @@ const findByTitle = title => {
   return http.get(`/players?title=${title}`);
 };
 
+const getAllSkills = () => {
+  return http.get(`/skills`);
+};
+
+const updateSkills = (data) => {
+  return http.post(`/players/addSkills`, data)
+}
+
 const PlayerService = {
   getAll,
   get,
@@ -35,7 +43,9 @@ const PlayerService = {
   update,
   remove,
   removeAll,
-  findByTitle
+  findByTitle,
+  getAllSkills,
+  updateSkills
 };
 
 export default PlayerService;
