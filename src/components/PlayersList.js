@@ -7,6 +7,8 @@ import {
 } from "../actions/players";
 import { Link } from "react-router-dom";
 
+import {Tag, Divider, Descriptions} from 'antd';
+
 const PlayersList = () => {
   const [currentPlayer, setCurrentPlayer] = useState(null);
   const [currentIndex, setCurrentIndex] = useState(-1);
@@ -50,6 +52,31 @@ const PlayersList = () => {
     dispatch(findPlayersByTitle(searchTitle));
   };
 
+  const COLORS = [
+    "magenta",
+    "red",
+    "volcano",
+    "orange",
+    "gold",
+    "lime",
+    "green",
+    "cyan",
+    "blue",
+    "geekblue",
+    "purple",
+  ]
+  const renderSkills = () => {
+    let skills = [];
+    let randomColor;
+    currentPlayer.skills.forEach((skill, index) => {
+      randomColor = COLORS[Math.floor(Math.random()*COLORS.length)];
+      skills.push(
+        <Tag color={randomColor} key={index}>{skill.name}</Tag>
+      )
+    });
+    return skills;
+  }
+
   return (
     <div className="list row">
       <div className="col-md-8">
@@ -73,7 +100,7 @@ const PlayersList = () => {
         </div>
       </div>
       <div className="col-md-6">
-        <h4>Players List</h4>
+        <Divider orientation="left">Players List</Divider>
 
         <ul className="list-group">
           {players &&
@@ -100,74 +127,28 @@ const PlayersList = () => {
       <div className="col-md-6">
         {currentPlayer ? (
           <div>
-            <h4>Player</h4>
+            <Divider orientation="left">Details</Divider>
+            <Descriptions>
+              <Descriptions.Item label="Name">{currentPlayer.name}</Descriptions.Item>
+              <Descriptions.Item label="Email">{currentPlayer.email}</Descriptions.Item>
+              <Descriptions.Item label="Mobile">{currentPlayer.mobile}</Descriptions.Item>
+              <Descriptions.Item label="Dob">{currentPlayer.dob}</Descriptions.Item>
+              <Descriptions.Item label="Age">{currentPlayer.age}</Descriptions.Item>
+              <Descriptions.Item label="Gender">{currentPlayer.gender}</Descriptions.Item>
+              <Descriptions.Item label="Role">{currentPlayer.role}</Descriptions.Item>
+              <Descriptions.Item label="Batting Style">{currentPlayer.batting_style}</Descriptions.Item>
+              <Descriptions.Item label="Bowling Style">{currentPlayer.bowling_style}</Descriptions.Item>
+            </Descriptions>
+      
+            <Divider orientation="left">Skills</Divider>
             <div>
-              <label>
-                <strong>Name:</strong>
-              </label>{" "}
-              {currentPlayer.name}
+              {renderSkills()}
             </div>
-            <div>
-              <label>
-                <strong>Email:</strong>
-              </label>{" "}
-              {currentPlayer.email}
-            </div>
-            <div>
-              <label>
-                <strong>Mobile:</strong>
-              </label>{" "}
-              {currentPlayer.mobile}
-            </div>
-            <div>
-              <label>
-                <strong>Dob:</strong>
-              </label>{" "}
-              {currentPlayer.dob}
-            </div>
-            <div>
-              <label>
-                <strong>Age:</strong>
-              </label>{" "}
-              {currentPlayer.age}
-            </div>
-            <div>
-              <label>
-                <strong>Gender:</strong>
-              </label>{" "}
-              {currentPlayer.gender}
-            </div>
-            
-            <div>
-              <label>
-                <strong>Role:</strong>
-              </label>{" "}
-              {currentPlayer.role}
-            </div>
-            <div>
-              <label>
-                <strong>Batting_style:</strong>
-              </label>{" "}
-              {currentPlayer.batting_style}
-            </div>
-            <div>
-              <label>
-                <strong>Bowling_style:</strong>
-              </label>{" "}
-              {currentPlayer.bowling_style}
-            </div>
-            
-            
-            
-            
-            
-            
-            
-            
-
+            <br/>
+            <br/>
             <Link
               to={"/players/" + currentPlayer.id}
-              className="badge badge-warning"
+              className="btn btn-warning btn-sm"
             >
               Edit
             </Link>

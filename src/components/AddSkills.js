@@ -5,10 +5,9 @@ import { retrieveSkills, addSkillsToPlayer } from "../actions/players";
 
 
 const AddSkills = (props) => {
-
     const { currentPlayer, currentPlayerSkillIds } = props;
 
-    const [ selectedItems, setSelectedItems ] = useState(currentPlayerSkillIds);
+    const [ selectedItems, setSelectedItems ] = useState([]);
 
     const [ message, setMessage] = useState("");
     
@@ -48,13 +47,14 @@ const AddSkills = (props) => {
     };
   
     return(
+
       <div>
         {message !== "" ? <Alert message={message} type="success" /> : null}
         <h4>Add Skills</h4>
         <Select
           mode="multiple"
           placeholder="Select Skills"
-          value={selectedItems}
+          value={selectedItems.length > 0 ? selectedItems : currentPlayerSkillIds}
           onChange={handleChange}
           style={{ width: '100%' }}
         >
