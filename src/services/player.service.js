@@ -25,7 +25,7 @@ const removeAll = () => {
 };
 
 const findByTitle = title => {
-  return http.get(`/players?title=${title}`);
+  return http.get(`/players?name=${title}`);
 };
 
 const getAllSkills = () => {

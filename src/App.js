@@ -7,8 +7,13 @@ import 'antd/dist/antd.css'
 import AddPlayer from "./components/AddPlayer";
 import Player from "./components/Player";
 import PlayersList from "./components/PlayersList";
+import AntModal from './components/common/modal';
 
 function App() {
+  const [visible, setvisible] = React.useState(false);
+  const showModal = () => {
+    setvisible(true);
+  }
   return (
     <Router>
       <nav className="navbar navbar-expand navbar-dark bg-dark">
@@ -22,19 +27,22 @@ function App() {
             </Link>
           </li>
           <li className="nav-item">
-            <Link to={"/add"} className="nav-link">
+            <a onClick={showModal} href className="btn btn-link">
               Add
-            </Link>
+            </a>
           </li>
         </div>
       </nav>
 
-      <div className="container mt-3">
+      <div style={{padding: "10px"}}>
         <Switch>
           <Route exact path={["/", "/players"]} component={PlayersList} />
-          <Route exact path="/add" component={AddPlayer} />
+          {/* <Route exact path="/add" component={AddPlayer} /> */}
           <Route path="/players/:id" component={Player} />
         </Switch>
+        <AntModal visible={visible} setvisible={setvisible} title="Add Players">
+          <AddPlayer/>
+        </AntModal>
       </div>
     </Router>
   );
