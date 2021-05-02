@@ -2,7 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
-import 'antd/dist/antd.css'
+import 'antd/dist/antd.css';
 
 import AddPlayer from "./components/AddPlayer";
 import Player from "./components/Player";
@@ -27,7 +27,7 @@ function App() {
             </Link>
           </li>
           <li className="nav-item">
-            <a onClick={showModal} href className="btn btn-link">
+            <a onClick={showModal} className="btn btn-link">
               Add
             </a>
           </li>

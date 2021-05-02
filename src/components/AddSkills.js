@@ -21,7 +21,7 @@ const AddSkills = (props) => {
 
     useEffect(() => {
       dispatch(retrieveSkills());
-    }, []);
+    }, [dispatch]);
 
     const OPTIONS = skills;
 

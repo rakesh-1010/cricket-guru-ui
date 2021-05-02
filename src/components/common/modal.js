@@ -21,7 +21,6 @@ export const AntModal = (props) => {
             visible={visible}
             onOk={handleOk}
             onCancel={handleCancel}
-            width={1000}
         >
             {children}
         </Modal>

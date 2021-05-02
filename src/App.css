@@ -36,3 +36,9 @@
     transform: rotate(360deg);
   }
 }
+
+.present-radio{
+  color: #389e0d;
+  background: #f6ffed;
+  border-color: #b7eb8f;
+}

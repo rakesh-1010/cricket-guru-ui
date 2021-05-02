@@ -10,8 +10,10 @@ import { Link } from "react-router-dom";
 import {Tag, Divider, Descriptions, Row, Col} from 'antd';
 
 import AttendanceCalendar from "./AttendanceCalendar";
-
-
+import { EditOutlined } from "@ant-design/icons";
+import AntModal from "./common/modal";
+import AddSkills from "./AddSkills";
+import Player from './Player'
 
 const PlayersList = () => {
   const [currentPlayer, setCurrentPlayer] = useState(null);
@@ -20,10 +22,20 @@ const PlayersList = () => {
 
   const players = useSelector(state => state.players);
   const dispatch = useDispatch();
+  const [detailsVisible, setDetailsVisible] = useState(false);
+  const [skillsVisible, setSkillsVisible] = useState(false);
+
+  const showDetailsModal = () => {
+    setDetailsVisible(true);
+  }
+
+  const showSkillsModal = () => {
+    setSkillsVisible(true);
+  }
 
   useEffect(() => {
     dispatch(retrievePlayers());
-  }, []);
+  }, [dispatch]);
 
   const onChangeSearchTitle = e => {
     const searchTitle = e.target.value;
@@ -81,10 +93,6 @@ const PlayersList = () => {
     return skills;
   }
 
-  const onPanelChange= (value, mode) =>{
-    console.log(value, mode);
-  }
-
   return (
     <>
       <Row>
@@ -136,7 +144,15 @@ const PlayersList = () => {
         <Col span="12" style={{border: "1px solid rgba(0,0,0,.125)", padding: "10px"}}>
           {currentPlayer ? (
             <div>
-              <Divider orientation="left">Details</Divider>
+              <Divider orientation="left">
+                Details       
+                <a onClick={showDetailsModal}> 
+                  <EditOutlined/> 
+                </a>
+              </Divider>
+              <AntModal visible={detailsVisible} setvisible={setDetailsVisible} title={"EDIT PLAYER DETAILS"} >
+                <Player match={{params: {id: currentPlayer.id}}}/>
+              </AntModal>
               <Descriptions>
                 <Descriptions.Item label="Name">{currentPlayer.name}</Descriptions.Item>
                 <Descriptions.Item label="Email">{currentPlayer.email}</Descriptions.Item>
@@ -149,7 +165,21 @@ const PlayersList = () => {
                 <Descriptions.Item label="Bowling Style">{currentPlayer.bowling_style}</Descriptions.Item>
               </Descriptions>
         
-              <Divider orientation="left">Skills</Divider>
+              <Divider orientation="left">
+                Skills
+                <a href onClick={showSkillsModal}> 
+                  <EditOutlined/> 
+                </a>
+              </Divider>
+              { (currentPlayer && currentPlayer.skills.length === 0) &&
+                  <p>No Skills added yet</p>
+              }
+              <AntModal  visible={skillsVisible} setvisible={setSkillsVisible} title={"Add Skills"} >
+                <AddSkills
+                  currentPlayer={currentPlayer}
+                  currentPlayerSkillIds={(currentPlayer && currentPlayer.skills.map(skill => skill.id)) || []}
+                />
+              </AntModal>
               <div style={{lineHeight: 3}}>
                 {renderSkills()}
               </div>
@@ -157,12 +187,6 @@ const PlayersList = () => {
               <AttendanceCalendar />
 
               <Divider orientation="left">Actions</Divider>
-              <Link
-                to={"/players/" + currentPlayer.id}
-                className="btn btn-warning btn-sm"
-              >
-                Edit
-              </Link>
             </div>
           ) : (
             <div>
