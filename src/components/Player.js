@@ -22,7 +22,6 @@ const Player = (props) => {
     PlayerDataService.get(id)
       .then(response => {
         setCurrentPlayer(response.data);
-        console.log(response.data);
       })
       .catch(e => {
         console.log(e);

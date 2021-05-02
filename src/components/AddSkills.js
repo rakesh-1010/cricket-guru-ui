@@ -5,7 +5,7 @@ import { retrieveSkills, addSkillsToPlayer } from "../actions/players";
 
 
 const AddSkills = (props) => {
-    const { currentPlayer, currentPlayerSkillIds } = props;
+    const { currentPlayer, currentPlayerSkillIds, setActivePlayer, index } = props;
 
     const [ selectedItems, setSelectedItems ] = useState([]);
 
@@ -40,10 +40,12 @@ const AddSkills = (props) => {
         .then(response => {
           console.log(response);
           setMessage("The Player Skill are updated successfully!");
+          setActivePlayer(currentPlayer, index);
         })
         .catch(e => {
           console.log(e);
         });
+        
     };
   
     return(

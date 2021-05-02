@@ -27,7 +27,7 @@ function App() {
             </Link>
           </li>
           <li className="nav-item">
-            <a onClick={showModal} className="btn btn-link">
+            <a onClick={showModal} href="#addPlayer" className="btn btn-link">
               Add
             </a>
           </li>
@@ -37,7 +37,6 @@ function App() {
       <div style={{padding: "10px"}}>
         <Switch>
           <Route exact path={["/", "/players"]} component={PlayersList} />
-          {/* <Route exact path="/add" component={AddPlayer} /> */}
           <Route path="/players/:id" component={Player} />
         </Switch>
         <AntModal visible={visible} setvisible={setvisible} title="Add Players">

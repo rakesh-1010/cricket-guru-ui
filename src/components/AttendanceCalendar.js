@@ -137,11 +137,11 @@ const AttendanceCalendar = () => {
     showModal();
   }
 
-  let modalTitle = calendarMode === "month" ? `Mark Attendance for ${currentClickedDate.format('DD-MM-YYYY')}` : "Add fees" 
+  let modalTitle = calendarMode === "month" ? `Mark Attendance for ${currentClickedDate.format('DD-MM-YYYY')}` : `Add fees for ${currentClickedDate.format('MMM')}` 
   return(
     <>
       <Calendar 
-          dateCellRender={dateCellRender} 
+          dateCellRender={dateCellRender}
           monthCellRender={monthCellRender} 
           onSelect={onSelect}
           onPanelChange={onPanelChange}
