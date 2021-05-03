@@ -36,6 +36,22 @@ const updateSkills = (data) => {
   return http.post(`/players/addSkills`, data)
 }
 
+const createAttendance = (data) => {
+  return http.post(`/attendances`, data)
+}
+
+const updateAttendance = (id, data) => {
+  return http.put(`/attendances/${id}`, data);
+};
+
+const createFee = (data) => {
+  return http.post(`/fees`, data)
+}
+
+const updateFee = (id, data) => {
+  return http.put(`/fees/${id}`, data);
+};
+
 const PlayerService = {
   getAll,
   get,
@@ -45,7 +61,11 @@ const PlayerService = {
   removeAll,
   findByTitle,
   getAllSkills,
-  updateSkills
+  updateSkills,
+  createAttendance,
+  updateAttendance,
+  createFee,
+  updateFee
 };
 
 export default PlayerService;

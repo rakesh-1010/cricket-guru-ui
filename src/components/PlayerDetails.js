@@ -1,6 +1,6 @@
 import React from 'react';
 
-import AttendanceCalendar from "./AttendanceCalendar";
+import AttendanceFeesCalendar from "./AttendanceFeesCalendar";
 import { EditOutlined } from "@ant-design/icons";
 import AntModal from "./common/modal";
 import AddSkills from "./AddSkills";
@@ -69,7 +69,7 @@ const PlayerDetails = (props) => {
               </div>
               <Divider orientation="left">Attendance & Fees Tracker</Divider>
 
-              <AttendanceCalendar />
+              <AttendanceFeesCalendar currentPlayer={currentPlayer}/>
             </div>
           ) : (
             <div>
