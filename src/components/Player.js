@@ -41,7 +41,7 @@ const Player = (props) => {
     dispatch(updatePlayer(currentPlayer.id, currentPlayer))
       .then(response => {
         console.log(response);
-
+        
         setMessage("The Player was updated successfully!");
       })
       .catch(e => {

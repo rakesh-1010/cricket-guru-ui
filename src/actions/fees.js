@@ -1,16 +1,16 @@
 import {
-    CREATE_ATTENDANCE,
-    UPDATE_ATTENDANCE
+    CREATE_FEE,
+    UPDATE_FEE
   } from "./types";
   
   import PlayerDataService from "../services/player.service";
   
-  export const createAttendance = (player_id, date, status) => async (dispatch) => {
+  export const createFees = (player_id, month, status, amount) => async (dispatch) => {
     try {
-      const res = await PlayerDataService.createAttendance({ player_id, date, status });
+      const res = await PlayerDataService.createFee({ player_id, month, status, amount });
   
       dispatch({
-        type: CREATE_ATTENDANCE,
+        type: CREATE_FEE,
         payload: res.data,
       });
   
@@ -20,12 +20,12 @@ import {
     }
   };
 
-  export const updateAttendance = (id, data) => async (dispatch) => {
+  export const updateFees = (id, data) => async (dispatch) => {
     try {
-      const res = await PlayerDataService.updateAttendance(id, data );
+      const res = await PlayerDataService.updateFee( id, data );
   
       dispatch({
-        type: UPDATE_ATTENDANCE,
+        type: UPDATE_FEE,
         payload: res.data,
       });
   
