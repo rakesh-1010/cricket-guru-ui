@@ -9,8 +9,9 @@ import moment from "moment";
 import "../App.css";
 import { useDispatch } from "react-redux";
 import { createAttendance, updateAttendance } from "../actions/attendance";
-import { createFees } from "../actions/fees";
-import FeesFormModal from "./FeesFormModal";
+import { createFees, updateFees } from "../actions/fees";
+// import FeesFormModal from "./FeesFormModal";
+import FeesModalContent from "./FeesModalContent";
 
 const AttendanceFeesCalendar = (props) => {
   const { currentPlayer } = props;
@@ -151,31 +152,56 @@ const AttendanceFeesCalendar = (props) => {
     }
   };
 
-  const handleFees = (data) => {
+  const handleFees = (fee={}) => {
     let dateValStr = currentClickedDate.format("YYYY-MM");
+    let currentFees = currentPlayer.fees.filter(att => 
+      att.player_id === currentPlayer.id && att.month === dateValStr
+    );
+    if (currentFees.length === 0) {
     dispatch(
-      createFees(currentPlayer.id, dateValStr, data.fee.status, data.fee.amount)
+      createFees(currentPlayer.id, dateValStr, fee.status, fee.amount)
     )
       .then((response) => {
         console.log(response);
         setSelectedPlayerFees((prevState) => ({
           ...prevState,
-          [dateValStr]: { amount: data.fee.amount, status: data.fee.status },
+          [dateValStr]: { amount: fee.amount, status: fee.status },
         }));
         setMessage("The Player Fee was updated successfully!");
       })
       .catch((e) => {
         console.log(e);
       });
+    }else{
+      let feesData = {
+        player_id: currentPlayer.id,
+        month: dateValStr,
+        status: fee.status,
+        amount: fee.amount
+      }
+      dispatch(updateFees(currentFees[0].id, feesData))
+        .then((response) => {
+          console.log(response);
+          setSelectedPlayerFees((prevState) => ({
+            ...prevState,
+            [dateValStr]: { amount: fee.amount, status: fee.status },
+          }));
+          setMessage("The Player Attendance was updated successfully!");
+        })
+        .catch((e) => {
+          console.log(e)
+        })
+
+    }
   };
 
   const loadFees = () => {
-    if (calendarMode === "year") {
+    if (calendarMode === "year" && visible) {
       return (
-        <FeesFormModal
+        <FeesModalContent
           handleFees={handleFees}
           message={message}
-          currentPlayer={currentPlayer}
+          selectedPlayerFees={selectedPlayerFees}
           currentClickedDate={currentClickedDate}
         />
       );

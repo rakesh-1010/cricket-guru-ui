@@ -21,6 +21,7 @@ export const AntModal = (props) => {
             visible={visible}
             onOk={handleOk}
             onCancel={handleCancel}
+            destroyOnClose={true}
         >
             {children}
         </Modal>
