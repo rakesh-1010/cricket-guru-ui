@@ -228,9 +228,6 @@ const Player = (props) => {
           <p>Please click on a Player...</p>
         </div>
       )}
-      <div className="col-md-6">
-        {/* <AddSkills currentPlayer={currentPlayer} currentPlayerSkillIds={currentPlayer.skills.map(skill => skill.id)}/> */}
-      </div>
     </>
   );
 };

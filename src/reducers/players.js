@@ -5,6 +5,7 @@ import {
     DELETE_PLAYER,
     DELETE_ALL_PLAYERS,
     UPDATE_ATTENDANCE,
+    GET_PLAYER,
   } from "../actions/types";
   
   const initialState = [];
@@ -15,12 +16,12 @@ import {
     switch (type) {
       case CREATE_PLAYER:
         return [...players, payload];
-
-      // case CREATE_ATTENDANCE:
-      //   return [...players, payload];
   
       case RETRIEVE_PLAYERS:
         return payload;
+
+      case GET_PLAYER:
+        return {currentPlayer: payload}
   
       case UPDATE_PLAYER:
         return players.map((player) => {

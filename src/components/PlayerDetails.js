@@ -19,11 +19,12 @@ const PlayerDetails = (props) => {
         setSkillsVisible,
         renderSkills,
         setActivePlayer,
-        index
+        index,
+        colWidth
     } = props;
 
     return(
-        <Col span="12" style={{border: "1px solid rgba(0,0,0,.125)", padding: "10px"}}>
+        <Col span={colWidth} style={{border: "1px solid rgba(0,0,0,.125)", padding: "10px"}}>
           {currentPlayer ? (
             <div>
               <Divider orientation="left">

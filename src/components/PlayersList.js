@@ -21,6 +21,12 @@ const PlayersList = () => {
   const [detailsVisible, setDetailsVisible] = useState(false);
   const [skillsVisible, setSkillsVisible] = useState(false);
 
+  const [showCoachBoard, setShowCoachBoard] = useState(false);
+  const [showAdminBoard, setShowAdminBoard] = useState(false);
+  const [showPlayerBoard, setShowPlayerBoard] = useState(false);
+
+  const { user: currentUser } = useSelector((state) => state.auth);
+
   const showDetailsModal = () => {
     setDetailsVisible(true);
   }
@@ -31,7 +37,12 @@ const PlayersList = () => {
 
   useEffect(() => {
     dispatch(retrievePlayers());
-  }, [dispatch]);
+    if (currentUser) {
+      setShowCoachBoard(currentUser.roles.includes("ROLE_COACH"));
+      setShowAdminBoard(currentUser.roles.includes("ROLE_ADMIN"));
+      setShowPlayerBoard(currentUser.roles.includes("ROLE_PLAYER"));
+    }
+  }, [dispatch, currentUser]);
 
   const onChangeSearchTitle = e => {
     const searchTitle = e.target.value;
@@ -98,7 +109,8 @@ const PlayersList = () => {
   return (
     <>
       <Row>
-        <Col span="12" style={{border: "1px solid rgba(0,0,0,.125)", borderRight: "none", padding: "10px"}}>
+        {showAdminBoard && (
+          <Col span="12" style={{border: "1px solid rgba(0,0,0,.125)", borderRight: "none", padding: "10px"}}>
           <Divider orientation="left">Players List</Divider>
           <Col span="12">
             <div className="input-group mb-3">
@@ -143,6 +155,7 @@ const PlayersList = () => {
             Remove All
           </button>
         </Col>
+        )}
         <PlayerDetails 
           currentPlayer={currentPlayer}
           showDetailsModal={showDetailsModal}
@@ -154,6 +167,7 @@ const PlayersList = () => {
           renderSkills={renderSkills}
           setActivePlayer={setActivePlayer}
           index={currentIndex}
+          colWidth={"12"}
         />
       </Row>
     </>

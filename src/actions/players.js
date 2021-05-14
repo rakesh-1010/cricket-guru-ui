@@ -1,6 +1,7 @@
 import {
     CREATE_PLAYER,
     RETRIEVE_PLAYERS,
+    GET_PLAYER,
     UPDATE_PLAYER,
     DELETE_PLAYER,
     DELETE_ALL_PLAYERS,
@@ -115,6 +116,19 @@ import {
   
       dispatch({
         type: RETRIEVE_PLAYERS,
+        payload: res.data,
+      });
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  export const getPlayer = (id) => async (dispatch) => {
+    try {
+      const res = await PlayerDataService.get(id);
+  
+      dispatch({
+        type: GET_PLAYER,
         payload: res.data,
       });
     } catch (err) {

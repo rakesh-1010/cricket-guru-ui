@@ -1,5 +1,6 @@
 export const CREATE_PLAYER = "CREATE_PLAYER";
 export const RETRIEVE_PLAYERS = "RETRIEVE_PLAYERS";
+export const GET_PLAYER = "GET_PLAYER";
 export const UPDATE_PLAYER = "UPDATE_PLAYER";
 export const DELETE_PLAYER = "DELETE_PLAYER";
 export const DELETE_ALL_PLAYERS = "DELETE_ALL_PLAYERS";
@@ -15,3 +16,12 @@ export const UPDATE_ATTENDANCE = "UPDATE_ATTENDANCE";
 
 export const CREATE_FEE = "CREATE_FEE";
 export const UPDATE_FEE = "UPDATE_FEE";
+
+export const REGISTER_SUCCESS = "REGISTER_SUCCESS";
+export const REGISTER_FAIL = "REGISTER_FAIL";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAIL = "LOGIN_FAIL";
+export const LOGOUT = "LOGOUT";
+
+export const SET_MESSAGE = "SET_MESSAGE";
+export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
