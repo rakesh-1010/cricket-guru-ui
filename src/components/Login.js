@@ -28,6 +28,7 @@ const Login = (props) => {
 
   const { isLoggedIn } = useSelector(state => state.auth);
   const { message } = useSelector(state => state.message);
+  const { user: currentUser } = useSelector((state) => state.auth);
 
   const dispatch = useDispatch();
 
@@ -51,7 +52,12 @@ const Login = (props) => {
     if (checkBtn.current.context._errors.length === 0) {
       dispatch(login(username, password))
         .then(() => {
-          props.history.push("/profile");
+          if(currentUser.roles.includes("ROLE_PLAYER", "ROLE_COACH")){
+            props.history.push("/userHome");
+          }
+          else{
+            props.history.push("/players");
+          }
           window.location.reload();
         })
         .catch(() => {
@@ -63,7 +69,13 @@ const Login = (props) => {
   };
 
   if (isLoggedIn) {
-    return <Redirect to="/profile" />;
+    console.log(currentUser);
+    if(currentUser.roles.includes("ROLE_PLAYER", "ROLE_COACH")){
+      return <Redirect to="/userHome" />;
+    }
+    else{
+      return <Redirect to="/players" />;
+    }
   }
 
   return (

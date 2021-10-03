@@ -13,6 +13,7 @@ import { createFees, updateFees } from "../actions/fees";
 // import FeesFormModal from "./FeesFormModal";
 import FeesModalContent from "./FeesModalContent";
 
+
 const AttendanceFeesCalendar = (props) => {
   const { currentPlayer } = props;
 
@@ -203,6 +204,7 @@ const AttendanceFeesCalendar = (props) => {
           message={message}
           selectedPlayerFees={selectedPlayerFees}
           currentClickedDate={currentClickedDate}
+          currentPlayer={currentPlayer}
         />
       );
     }

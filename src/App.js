@@ -12,10 +12,11 @@ import AntModal from './components/common/modal';
 import Login from "./components/Login";
 import Register from "./components/Register";
 import Home from "./components/Home";
-import Profile from "./components/Profile.js";
+import UserHome from "./components/userHome.js";
 import BoardUser from "./components/BoardUser";
 import BoardCoach from "./components/BoardCoach";
 import BoardAdmin from "./components/BoardAdmin";
+import Profile  from "./components/user/profile";
 
 import { logout } from "./actions/auth";
 import { clearMessage } from "./actions/message";
@@ -113,12 +114,13 @@ function App() {
         <Route exact path={["/", "/home"]} component={Home} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/register" component={Register} />
-          <Route exact path="/profile" component={Profile} />
+          <Route exact path="/UserHome" component={UserHome} />
           <Route path="/user" component={BoardUser} />
           <Route path="/coach" component={BoardCoach} />
           <Route path="/admin" component={BoardAdmin} />
           <Route exact path={["/", "/players"]} component={PlayersList} />
           <Route path="/players/:id" component={Player} />
+          <Route path="/profile" component={Profile} />
         </Switch>
         <AntModal visible={visible} setvisible={setvisible} title="Add Players">
           <AddPlayer/>

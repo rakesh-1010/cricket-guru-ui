@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 
 import { Input, Select, Button } from "antd";
+import {PDFDownloadLink} from '@react-pdf/renderer';
+import InvoiceTemplate from './invoice/invoiceTemplate';
 const FeesModalContent = (props) => {
-  const { handleFees, message, selectedPlayerFees, currentClickedDate } = props;
+  const { handleFees, message, selectedPlayerFees, currentClickedDate, currentPlayer } = props;
+
 
   const checkfee = (_, value) => {
     if (value.amount > 0) {
@@ -66,6 +69,14 @@ const FeesModalContent = (props) => {
       <Button type="primary" onClick={handleSubmit}>
         Submit
       </Button>
+      <br />
+      <br />
+      {status === 'paid' && 
+        <PDFDownloadLink document={<InvoiceTemplate currentPlayer={currentPlayer}/>} fileName="invoice.pdf" onClick={(e) => e.preventDefault()}>
+          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download Payment Receipt!')}
+        </PDFDownloadLink>
+      }
+      
     </>
   );
 };
