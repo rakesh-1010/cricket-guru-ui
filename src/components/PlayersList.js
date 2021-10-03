@@ -10,6 +10,7 @@ import {Tag, Divider, Row, Col} from 'antd';
 
 import PlayerDataService from "../services/player.service";
 import PlayerDetails from "./PlayerDetails";
+import { Rate } from 'antd';
 
 const PlayersList = () => {
   const [currentPlayer, setCurrentPlayer] = useState(null);
@@ -143,7 +144,8 @@ const PlayersList = () => {
                   onClick={() => setActivePlayer(player, index)}
                   key={index}
                 >
-                  {`${player.name}, ${player.age}, ${player.role}`}
+                  {`${player.name}, ${player.age}, ${player.role}`}     
+                  <Rate allowHalf defaultValue={2.5} style={ {textAlign: 'right'}}/>
                 </li>
               ))}
           </ul>
